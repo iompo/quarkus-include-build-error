@@ -1,0 +1,22 @@
+pluginManagement {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    plugins {
+        id "${quarkusPluginId}" version "${quarkusPluginVersion}"
+    }
+}
+rootProject.name='include-builds-error'
+
+def includeBuildsFile = file('.includeBuilds')
+boolean inComposite = gradle.parent != null
+if (includeBuildsFile.exists() && !inComposite) {
+    for (String path : includeBuildsFile) {
+        if (!path.startsWith("#")) {
+            println "Including build " + path
+            includeBuild(path)
+        }
+    }
+}

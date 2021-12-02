@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+}
+
+
+allprojects {
+    group 'org.example.include.dto'
+    version '1.0'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+
+
